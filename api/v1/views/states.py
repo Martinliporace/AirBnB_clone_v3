@@ -64,7 +64,7 @@ def update(state_id=None):
     req = request.get_json()
     if not req:
         abort(400, "Not a JSON")
-    for key, value in st.items():
+    for key, value in req.items():
         if key not in attr:
             setattr(st, key, value)
     st.save()
