@@ -16,7 +16,7 @@ def get_states():
     return jsonify(all)
 
 
-@app_views.route("/states/<state_id>", methods=['GET'], strict_slashes=False)
+@app_views.route("/states/<state_id>", methods=['GET'])
 def get_state(state_id=None):
     """Retrieves a State object"""
     if not state_id:
