@@ -58,7 +58,7 @@ def create():
 def update(state_id=None):
     """ update state """
     st = storage.get(State, state_id)
-    attr = ['name', 'id', 'created_at', 'updated_at']
+    attr = ['id', 'created_at', 'updated_at']
     if st is None:
         abort(404)
     req = request.get_json()
