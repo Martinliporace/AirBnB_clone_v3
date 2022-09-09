@@ -68,4 +68,4 @@ def update(state_id=None):
         if key not in attr:
             setattr(st, key, value)
     st.save()
-    return (jsonify(st.to_dict()), 201)
+    return (jsonify(st.to_dict()), 200)
