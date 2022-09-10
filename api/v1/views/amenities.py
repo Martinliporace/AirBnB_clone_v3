@@ -5,8 +5,6 @@ from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models import storage
 from models.amenity import Amenity
-from models.engine.file_storage import FileStorage
-from models.engine.db_storage import DBStorage
 
 @app_views.route('/amenities/', methods=['GET', 'POST'])
 def amenities_no_id(amenity_id=None):
@@ -24,14 +22,13 @@ def amenities_no_id(amenity_id=None):
             abort(400, 'Not a JSON')
         if req_json.get('name') is None:
             abort(400, 'Missing name')
-        Amenity = CNC.get('Amenity')
+        Amenity = storage.get('Amenity')
         new_object = Amenity(**req_json)
         new_object.save()
         return jsonify(new_object.to_json()), 201
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET', 'DELETE', 'PUT'])
-@swag_from('swagger_yaml/amenities_id.yml', methods=['GET', 'DELETE', 'PUT'])
 def amenities_with_id(amenity_id=None):
     """
         amenities handle http requests with ID given

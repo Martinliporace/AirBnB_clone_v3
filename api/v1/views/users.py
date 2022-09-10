@@ -27,14 +27,13 @@ def users_no_id(user_id=None):
             abort(400, 'Missing email')
         if req_json.get('password') is None:
             abort(400, 'Missing password')
-        User = CNC.get('User')
+        User = storage.get('User')
         new_object = User(**req_json)
         new_object.save()
         return jsonify(new_object.to_json()), 201
 
 
 @app_views.route('/users/<user_id>', methods=['GET', 'DELETE', 'PUT'])
-@swag_from('swagger_yaml/users_id.yml', methods=['GET', 'DELETE', 'PUT'])
 def user_with_id(user_id=None):
     """
         user hand http requests with ID given
