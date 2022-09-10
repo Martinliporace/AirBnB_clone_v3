@@ -3,12 +3,11 @@
 """
 from api.v1.views import app_views
 from flask import abort, jsonify, request
-from models import storage, CNC
-from flasgger.utils import swag_from
+from models import storage
+from models.user import User
 
 
 @app_views.route('/users/', methods=['GET', 'POST'])
-@swag_from('swagger_yaml/users_no_id.yml', methods=['GET', 'POST'])
 def users_no_id(user_id=None):
     """
         users hand http requests with no ID given

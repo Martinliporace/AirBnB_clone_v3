@@ -3,12 +3,10 @@
 """
 from api.v1.views import app_views
 from flask import abort, jsonify, request
-from models import storage, CNC
-from flasgger.utils import swag_from
-
+from models import storage
+from models.amenity import Amenity
 
 @app_views.route('/amenities/', methods=['GET', 'POST'])
-@swag_from('swagger_yaml/amenities_no_id.yml', methods=['GET', 'POST'])
 def amenities_no_id(amenity_id=None):
     """
         amenities handle http requests no ID given
