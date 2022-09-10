@@ -77,4 +77,4 @@ def update_place(place_id=None):
         if key not in attr:
             setattr(pl, key, value)
     pl.save()
-    return (jsonify(am.to_dict()), 200)
+    return (jsonify(pl.to_dict()), 200)
