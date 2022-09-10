@@ -4,6 +4,7 @@
 from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models import storage
+from models.city import City
 from models.place import Place
 
 
