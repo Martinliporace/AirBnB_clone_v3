@@ -55,7 +55,7 @@ def create_place(city_id=None):
         abort(400, "Missing name")
     elif "user_id" not in req:
         abort(400, "Missing user_id")
-    new = Place(name=req['name'])
+    new = Place(name=req['name'], user_id=req['user_id'])
     storage.new(new)
     storage.save()
     return (jsonify(new.to_dict()), 201)
