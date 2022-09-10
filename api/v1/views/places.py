@@ -7,7 +7,7 @@ from models import storage
 from models.place import Place
 
 
-@app_views.route('cities/<city_id>/places', methods=['GET'],
+@app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
 def get_places():
     """ Retrieves the list of all Place objects """
@@ -32,7 +32,7 @@ def get_place(place_id=None):
         return jsonify(pl.to_dict())
 
 
-@app_views.route('places/<place_id>', methods=['DELETE'])
+@app_views.route('/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id=None):
     """Deletes a Place object"""
     pl = storage.get(Place, place_id)
@@ -44,7 +44,7 @@ def delete_place(place_id=None):
         return (jsonify({}), 200)
 
 
-@app_views.route('cities/<city_id>/places', methods=['POST'],
+@app_views.route('/cities/<city_id>/places', methods=['POST'],
                  strict_slashes=False)
 def create_place(city_id=None):
     """ Creates a place """
@@ -61,7 +61,7 @@ def create_place(city_id=None):
     return (jsonify(new.to_dict()), 201)
 
 
-@app_views.route('places/<place_id>', methods=['PUT'])
+@app_views.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id=None):
     """ update place """
     pl = storage.get(Place, place_id)
