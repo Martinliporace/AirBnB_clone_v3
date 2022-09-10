@@ -5,7 +5,8 @@ from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models import storage
 from models.user import User
-
+from models.engine.file_storage import FileStorage
+from models.engine.db_storage import DBStorage
 
 @app_views.route('/users/', methods=['GET', 'POST'])
 def users_no_id(user_id=None):

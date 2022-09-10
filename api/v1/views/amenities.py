@@ -5,6 +5,8 @@ from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models import storage
 from models.amenity import Amenity
+from models.engine.file_storage import FileStorage
+from models.engine.db_storage import DBStorage
 
 @app_views.route('/amenities/', methods=['GET', 'POST'])
 def amenities_no_id(amenity_id=None):
