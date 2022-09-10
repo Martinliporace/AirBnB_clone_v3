@@ -21,7 +21,7 @@ def get_places():
 
 
 @app_views.route('/places/<place_id>', methods=['GET'])
-def get_place(amenity_id=None):
+def get_place(place_id=None):
     """Retrieves a Place object"""
     if not place_id:
         return (self.get_places())
