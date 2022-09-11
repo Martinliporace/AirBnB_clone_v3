@@ -47,6 +47,9 @@ def delete_place(place_id=None):
                  strict_slashes=False)
 def create_place(city_id=None):
     """ Creates a place """
+    ci = storage.get(City, city_id)
+    if ci is None:
+        abort(404)
     req = request.get_json()
     if not req:
         abort(400, "Not a JSON")
@@ -54,7 +57,10 @@ def create_place(city_id=None):
         abort(400, "Missing name")
     elif "user_id" not in req:
         abort(400, "Missing user_id")
-    new = Place(name=req['name'], user_id=req['user_id'])
+    us = storage.get(User, req['user_id'])
+    if not us:
+        abort(404)
+    new = Place(name=req['name'], city_id=ci_id, user_id=us_id)
     storage.new(new)
     storage.save()
     return (jsonify(new.to_dict()), 201)
