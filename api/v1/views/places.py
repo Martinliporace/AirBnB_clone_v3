@@ -60,7 +60,7 @@ def create_place(city_id=None):
     us = storage.get(User, req['user_id'])
     if not us:
         abort(404)
-    new = Place(name=req['name'], city_id=ci_id, user_id=us_id)
+    new = Place(name=req['name'], city_id=ci.id, user_id=us.id)
     storage.new(new)
     storage.save()
     return (jsonify(new.to_dict()), 201)
@@ -81,3 +81,4 @@ def update_place(place_id=None):
             setattr(pl, key, value)
     pl.save()
     return (jsonify(pl.to_dict()), 200)
+
