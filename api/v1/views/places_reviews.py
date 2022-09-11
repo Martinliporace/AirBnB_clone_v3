@@ -62,7 +62,7 @@ def create_review(place_id=None):
     us = storage.get(User, req['user_id'])
     if not us:
         abort(404)
-    new = Review(place_id=place_id, user_id=req[us.id], text=req['text'])
+    new = Review(place_id=place_id, user_id=us, text=req['text'])
     storage.new(new)
     storage.save()
     return (jsonify(new.to_dict()), 201)
