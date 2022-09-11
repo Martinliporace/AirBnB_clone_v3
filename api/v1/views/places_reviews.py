@@ -82,4 +82,4 @@ def update_review(review_id=None):
         if key not in attr:
             setattr(re, key, value)
     re.save()
-    return (jsonify(pl.to_dict()), 200)
+    return (jsonify(re.to_dict()), 200)
