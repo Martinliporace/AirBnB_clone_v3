@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 """ Amenities """
 
@@ -13,7 +14,7 @@ def get_users():
     all = []
     for us in storage.all(User).values():
         all.append(us.to_dict())
-    return jsonify(all)
+    return (jsonify(all), 200)
 
 
 @app_views.route('/users/<user_id>', methods=['GET'])
@@ -22,10 +23,10 @@ def get_user(user_id=None):
     if not user_id:
         return (self.get_users())
     else:
-        am = storage.get(User, user_id)
-        if am is None:
+        us = storage.get(User, user_id)
+        if us is None:
             abort(404)
-        return jsonify(am.to_dict())
+        return (jsonify(us.to_dict()), 200)
 
 
 @app_views.route('/users/<user_id>', methods=['DELETE'])
