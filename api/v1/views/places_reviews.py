@@ -18,7 +18,8 @@ def get_places_reviews(place_id=None):
     if not places:
         abort(404)
     for re in places.reviews:
-        all.append(re.to_dict())
+        if re.place_id == place_id:
+            all.append(re.to_dict())
     return jsonify(all)
 
 
