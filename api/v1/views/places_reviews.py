@@ -59,10 +59,9 @@ def create_review(place_id=None):
         abort(400, "Missing user_id")
     elif "text" not in req:
         abort(400, "Missing text")
-    us = storage.get(User, req['user_id'])
     if not us:
         abort(404)
-    new = Review(place_id=place_id, user_id=us, text=req['text'])
+    new = Review(place_id=place_id, user_id=req['user_id'], text=req['text'])
     storage.new(new)
     storage.save()
     return (jsonify(new.to_dict()), 201)
