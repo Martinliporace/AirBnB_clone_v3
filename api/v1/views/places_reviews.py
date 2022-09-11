@@ -59,7 +59,8 @@ def create_review(place_id=None):
         abort(400, "Missing user_id")
     elif "text" not in req:
         abort(400, "Missing text")
-    if not us:
+    user = storage.get(User, req['user_id'])
+    if not user:
         abort(404)
     new = Review(place_id=place_id, user_id=req['user_id'], text=req['text'])
     storage.new(new)
