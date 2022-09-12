@@ -13,7 +13,6 @@ class TestAppDocs(unittest.TestCase):
     all_funcs = inspect.getmembers(app, inspect.isfunction)
 
     @classmethod
-
     def test_doc_file(self):
         """... docu for the file"""
         actual = app.__doc__
