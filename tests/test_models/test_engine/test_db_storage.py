@@ -92,3 +92,7 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(model.storage_t != 'db', "not testing db storage")
     def test_get(self):
         self.assertIs(type(models.storage.get()), dict)
+
+    @unittest.skipIf(model.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        self.assertIs(type(models.storage.count()), dict)
